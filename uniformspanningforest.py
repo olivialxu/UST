@@ -4,17 +4,20 @@ import random
 # universal cell size
 cell_size = 40
 
+# setup turtle
 def turtle_setup():
     screen = t.Screen()
     screen.setup(width=600, height=600)
 
     return screen
     
+# get coordinate given row and column number
 def get_coord(row, col, nrows, ncols, cell_size):
     x = col * cell_size - (ncols * cell_size) // 2
     y = (nrows - row - 1) * cell_size - (nrows * cell_size) // 2
     return x, y
 
+# draw initial grid and create matrix
 def draw_grid(nrows, ncols, screen):
     screen.tracer(0)
     t.pencolor("black")
@@ -46,6 +49,7 @@ def draw_grid(nrows, ncols, screen):
     screen.tracer(1)
     return grid
 
+# generate uniform spanning forest with random walk algorithm
 def complete_random_walk(grid):
     # visited = {boundary points of grid}
     # not_visited = {interior points}
@@ -83,15 +87,8 @@ def complete_random_walk(grid):
         for col in range(ncols + 1):
             if (row, col) not in visited:
                 not_visited.add((row, col))
-    
 
-    print("VISITED")
-    print(visited)
-
-    print("NOT VISITED")
-    print(not_visited)
-
-    # generate uniform spanning tree via wilson's algorithm
+    # generate uniform spanning forest
     while not_visited:
         start = random.choice(list(not_visited))
         current = start
@@ -104,12 +101,10 @@ def complete_random_walk(grid):
         t.goto(x, y)
         t.dot(5, "red")
 
-        print("STARTING AT", current)
-
         # random walk until we hit a visited point
         while True:
             row, col = current
-            dir = random.choice([(1, 0), (0, 1), (-1, 0), (0, -1)])  # right, up, left, down
+            dir = random.choice([(1, 0), (0, 1), (-1, 0), (0, -1)])
             new_row, new_col = row + dir[0], col + dir[1]
 
             # check that we are in bounds
@@ -118,8 +113,6 @@ def complete_random_walk(grid):
 
             # move to new point
             current = (new_row, new_col)
-
-            print("NOW AT", current)
                 
             # draw path to (new_x, new_y)
             new_x, new_y = get_coord(new_row, new_col, nrows, ncols, cell_size)
@@ -136,14 +129,6 @@ def complete_random_walk(grid):
             not_visited.discard(current)
         
         t.penup()
-        
-        print("\nUPDATES")
-        
-        print("VISITED")
-        print(visited)
-
-        print("NOT VISITED")
-        print(not_visited)
 
 if __name__ == "__main__":
 
@@ -154,5 +139,6 @@ if __name__ == "__main__":
     grid = draw_grid(nrows, ncols, screen)
     complete_random_walk(grid)
 
+    # closes turtle
     t.hideturtle()
     t.done()
