@@ -1,0 +1,61 @@
+body {
+    background-color: #d0e8ff;  
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* SVG graph container */
+svg {
+    margin-top: 20px;
+    border: 3px solid #4A90E2;  
+    border-radius: 15px;
+    background: white;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Rounded blue button */
+button {
+    background: #4A90E2; 
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+/* Button hover effect */
+button:hover {
+    background: #357ABD;
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    button {
+        font-size: 16px;
+        padding: 10px 18px;
+    }
+}
