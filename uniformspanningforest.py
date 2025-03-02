@@ -1,3 +1,5 @@
+# generate uniform spanning forest
+
 import turtle as t
 import random
 

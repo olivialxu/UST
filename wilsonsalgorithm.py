@@ -1,4 +1,4 @@
-# generate uniform spanning tree via wilson's algorithm
+# generate uniform spanning tree
 
 import turtle as t
 import random
@@ -15,9 +15,8 @@ def turtle_setup():
     
 # get coordinate given row and column number
 def get_coord(row, col, nrows, ncols, cell_size):
-    x = col * cell_size - (ncols * cell_size) / 2
-    y = (nrows - row) * cell_size - (nrows * cell_size) / 2
-    
+    x = col * cell_size - (ncols * cell_size) // 2
+    y = (nrows - row - 1) * cell_size - (nrows * cell_size) // 2
     return x, y
 
 # draw initial grid and create matrix
@@ -54,11 +53,13 @@ def draw_path(start, end, color="red"):
 
     t.pencolor(color)
     t.penup()
+    screen.tracer(0)
     t.goto(x1, y1)
-    t.dot(5, color)
+    screen.update()
+    screen.tracer(1)
     t.pendown()
     t.goto(x2, y2)
-    t.dot(5, color)
+    t.penup()
 
 # generate uniform spanning tree with wilson's algorithm
 def wilsons_algorithm(grid):
@@ -111,11 +112,9 @@ def wilsons_algorithm(grid):
             t.pendown()
             t.goto(x2, y2)
             t.dot(5, "red")
-            # draw_path(path[i], path[i + 1])
 
 if __name__ == "__main__":
 
-    # print("generating m x n grid of VERTICES...")
     nrows = int(input("number of rows: "))
     ncols = int(input("number of columns: "))
 
