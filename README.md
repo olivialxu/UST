@@ -1,4 +1,5 @@
 # Visualize Generation of Uniform Spanning Tree via Wilson's Algorithm
+Alexandra Kim and Olivia Xu
 
 This program visualizes the process of generating a uniform spanning tree (UST) on an m x n grid of vertices via Wilson's Algorithm, using Python turtle.
 
